@@ -1,0 +1,786 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{ProjectScoreSanger20210311 VS DepMap22Q2}
+\author{Lucia Trastulla}
+\date{23/05/2022}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={ProjectScoreSanger20210311 VS DepMap22Q2},
+  pdfauthor={Lucia Trastulla},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\hypertarget{aim}{%
+\subsubsection{Aim}\label{aim}}
+
+Comparison of \textbf{DepMap 22Q2} release
+\url{https://depmap.org/portal/download/} and Project SCORE release
+\textbf{Project\_score\_combined\_Sanger\_v1\_Broad\_20Q2\_20210311}
+\url{https://score.depmap.sanger.ac.uk/downloads}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggvenn)}
+\FunctionTok{library}\NormalTok{(ggalluvial)}
+
+\NormalTok{GeneEffect\_DepMap }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/CRISPR\_gene\_effect.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{sample\_info\_DepMap }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/sample\_info.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{sample\_info\_DepMap }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap[}\FunctionTok{match}\NormalTok{(GeneEffect\_DepMap}\SpecialCharTok{$}\NormalTok{DepMap\_ID, sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{DepMap\_ID), ]}
+
+\NormalTok{sample\_info\_CMP }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}/group/iorio/CellModelPassports/models/model\_list\_20210611.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{GeneEffect\_SCORE }\OtherTok{\textless{}{-}} \FunctionTok{get}\NormalTok{(}\FunctionTok{load}\NormalTok{(}\StringTok{\textquotesingle{}/group/iorio/Datasets/DepMap/essentiality20Q2/Sanger\_Broad\_higQ\_scaled\_depFC.RData\textquotesingle{}}\NormalTok{))}
+\NormalTok{sample\_info\_PS }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_CMP[}\FunctionTok{match}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(GeneEffect\_SCORE), sample\_info\_CMP}\SpecialCharTok{$}\NormalTok{model\_name), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CCL\_ids }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{ProjectSCORE =}\NormalTok{ sample\_info\_PS}\SpecialCharTok{$}\NormalTok{BROAD\_ID, }
+               \AttributeTok{DepMap22Q2 =}\NormalTok{ sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{DepMap\_ID)}
+
+\FunctionTok{ggvenn}\NormalTok{(CCL\_ids, }\AttributeTok{fill\_color =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#0073C2FF"}\NormalTok{, }\StringTok{"\#EFC000FF"}\NormalTok{),}
+  \AttributeTok{stroke\_size =} \DecValTok{1}\NormalTok{, }\AttributeTok{set\_name\_size =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{compare_latest_update_files/figure-latex/unnamed-chunk-2-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# combined considering sample\_info\_CMP info }
+
+\NormalTok{sample\_info\_CMP }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_CMP }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{in\_DepMap22Q2 =} \FunctionTok{case\_when}\NormalTok{(BROAD\_ID }\SpecialCharTok{\%in\%}\NormalTok{ sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{DepMap\_ID }\SpecialCharTok{\textasciitilde{}}\NormalTok{ T,}
+                           \SpecialCharTok{!}\NormalTok{BROAD\_ID }\SpecialCharTok{\%in\%}\NormalTok{ sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{DepMap\_ID }\SpecialCharTok{\textasciitilde{}}\NormalTok{ F), }
+         \AttributeTok{in\_ProjectSCORE =} \FunctionTok{case\_when}\NormalTok{(model\_name }\SpecialCharTok{\%in\%} \FunctionTok{colnames}\NormalTok{(GeneEffect\_SCORE) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ T,}
+                           \SpecialCharTok{!}\NormalTok{model\_name }\SpecialCharTok{\%in\%} \FunctionTok{colnames}\NormalTok{(GeneEffect\_SCORE) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ F))}
+\FunctionTok{table}\NormalTok{(sample\_info\_CMP}\SpecialCharTok{$}\NormalTok{in\_DepMap22Q2, sample\_info\_CMP}\SpecialCharTok{$}\NormalTok{in\_ProjectSCORE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        
+##         FALSE TRUE
+##   FALSE  1009    4
+##   TRUE    133  861
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_info\_DepMap }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{DepMap22Q2 =} \FunctionTok{case\_when}\NormalTok{(DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ sample\_info\_PS}\SpecialCharTok{$}\NormalTok{BROAD\_ID }\SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}in ProjectSCORE\textquotesingle{}}\NormalTok{,}
+                           \SpecialCharTok{!}\NormalTok{DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ sample\_info\_PS}\SpecialCharTok{$}\NormalTok{BROAD\_ID }\SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}new\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+When matching with CellModelPassport reference file, only 994 (861 +
+133) found in the reference file and not 1086: 92 not annotated in the
+cell model passport
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lineages }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{lineage)}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{group\_by}\NormalTok{(DepMap22Q2, lineage) }\SpecialCharTok{\%\textgreater{}\%} 
+        \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{mutate}\NormalTok{(}\AttributeTok{DepMap22Q2 =} \FunctionTok{factor}\NormalTok{(DepMap22Q2, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}in ProjectSCORE\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}new\textquotesingle{}}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'DepMap22Q2'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(DepMap22Q2 }\SpecialCharTok{==} \StringTok{\textquotesingle{}new\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(count)}
+\NormalTok{ord\_lineages }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(tmp}\SpecialCharTok{$}\NormalTok{lineage)}
+\NormalTok{ord\_lineages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(lineages, ord\_lineages), ord\_lineages)}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{lineage }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{lineage, }\AttributeTok{levels =}\NormalTok{ ord\_lineages)}
+
+\CommentTok{\# order by increase in size}
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ lineage, }\AttributeTok{y =}\NormalTok{ count, }\AttributeTok{fill =}\NormalTok{ DepMap22Q2)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+}                                        
+  \FunctionTok{coord\_flip}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{compare_latest_update_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ord\_lineages }\OtherTok{\textless{}{-}}\NormalTok{ ord\_lineages[ord\_lineages}\SpecialCharTok{!=} \StringTok{\textquotesingle{}unknown\textquotesingle{}}\NormalTok{]}
+\NormalTok{tmp }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lineage }\SpecialCharTok{!=} \StringTok{\textquotesingle{}unknown\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(lineage, lineage\_subtype, DepMap22Q2) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Freq =} \FunctionTok{n}\NormalTok{())  }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{lineage =} \FunctionTok{factor}\NormalTok{(lineage , }\AttributeTok{levels =}\NormalTok{ ord\_lineages))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'lineage', 'lineage_subtype'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lineages\_subtypes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(ord\_lineages))\{}
+\NormalTok{  tmp\_i }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(lineage }\SpecialCharTok{==}\NormalTok{ ord\_lineages[i])}
+\NormalTok{  lineages\_subtypes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(lineages\_subtypes, }\FunctionTok{unique}\NormalTok{(tmp\_i}\SpecialCharTok{$}\NormalTok{lineage\_subtype))}
+\NormalTok{\}}
+\NormalTok{lineages\_subtypes }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(lineages\_subtypes[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(lineages\_subtypes)])}
+\NormalTok{tmp }\OtherTok{\textless{}{-}}\NormalTok{ tmp }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{lineage\_subtype =} \FunctionTok{factor}\NormalTok{(lineage\_subtype, }\AttributeTok{levels =}\NormalTok{ lineages\_subtypes))}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(tmp),}
+             \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Freq, }\AttributeTok{axis1 =}\NormalTok{ DepMap22Q2, }\AttributeTok{axis2 =}\NormalTok{ lineage, }\AttributeTok{axis3 =}\NormalTok{ lineage\_subtype)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_alluvium}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ DepMap22Q2), }\AttributeTok{width =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{12}\NormalTok{, }\AttributeTok{aes.bind =} \StringTok{"flows"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_stratum}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{12}\NormalTok{, }\AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\AttributeTok{color =} \StringTok{"grey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{stat =} \StringTok{"stratum"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{after\_stat}\NormalTok{(stratum))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\StringTok{"DepMap22Q2"}\NormalTok{, }\StringTok{"Lineage"}\NormalTok{,}\StringTok{"Lineage Subtype"}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(.}\DecValTok{06}\NormalTok{, .}\DecValTok{06}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{text=} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{18}\NormalTok{), }\AttributeTok{legend.position =} \StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{compare_latest_update_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(sample\_info\_DepMap[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sample\_info\_DepMap}\SpecialCharTok{$}\NormalTok{Cellosaurus\_issues), }
+                                \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}DepMap\_ID\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}cell\_line\_name\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}lineage\textquotesingle{}}\NormalTok{, }
+                                  \StringTok{\textquotesingle{}DepMap22Q2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Cellosaurus\_issues\textquotesingle{}}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.02}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.03}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.05}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.03}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.87}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+DepMap\_ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cell\_line\_name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+lineage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DepMap22Q2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cellosaurus\_issues
+\end{minipage} \\
+\midrule
+\endhead
+ACH-000013 & ONCO-DG-1 & ovary & in ProjectSCORE & Contaminated. Shown
+to be a OVCAR-3 derivative (PubMed=20143388). Originally thought to
+originate from a 49 year old female patient with a thyroid gland
+papillary carcinoma. \\
+ACH-000025 & CH-157MN & central\_nervous\_system & in ProjectSCORE &
+Indicated to be from a 41 year old female patient in PubMed=7714613,
+from a 59 year old in PubMed=10083766 and from a 55 year old in
+PubMed=18261772 \\
+ACH-000028 & KPL-1 & breast & in ProjectSCORE & Contaminated. Shown to
+be a MCF-7 derivative (PubMed=18304946; PubMed=20143388). \\
+ACH-000030 & PC-14 & lung & in ProjectSCORE & TP53 mutation indicated
+incorrectly as being at c.742C\textgreater T in PubMed=10536175 and
+PubMed=20557307 \\
+ACH-000039 & SK-N-MC & bone & in ProjectSCORE & Misclassified.
+Originally thought to be a neuroblastoma cell line but shown to be from
+an Askin tumor (PubMed=20143388). \\
+ACH-000040 & U-118 MG & central\_nervous\_system & in ProjectSCORE &
+Contaminated. Shown to be a U-138MG derivative (PubMed=20143388). \\
+ACH-000052 & A-673 & bone & in ProjectSCORE & Misclassified. Originally
+thought to be a rhabdomyosarcoma cell line but shown to be from an Ewing
+sarcoma (PubMed=10379870; PubMed=12606131; PubMed=14697648). \\
+ACH-000075 & U-87 MG & central\_nervous\_system & in ProjectSCORE &
+Misidentified. This cell line is not the original glioblastoma cell line
+established in 1968 at the University of Uppsala. As described in
+PubMed=27582061 it is most probably also a glioblastoma cell line but
+whose origin is unknow. See U-87MG Uppsala (CVCL\_GP63) for the original
+U-87MG cell line. \\
+ACH-000094 & HPAF-II & pancreas & in ProjectSCORE & TP53 mutation
+indicated incorrectly as being at c.452C\textgreater T in
+PubMed=1764370 \\
+ACH-000096 & G-401 & kidney & in ProjectSCORE & Misclassified.
+Originally thought to be a Wilms tumor cell line but is a kidney
+rhabdoid tumor cell line (PubMed=8382007). \\
+ACH-000123 & COV434 & ovary & in ProjectSCORE & Misclassified.
+Originally thought to be an ovarian granulosa cell tumor but seems to be
+a small cell carcinoma of the ovary, hypercalcemic type (SCCOHT)
+(PubMed=33328126). \\
+ACH-000124 & OCI-LY-19 & lymphocyte & in ProjectSCORE & While it was
+indicated to be EBV-positive (PubMed=20454443), this result has later
+been shown to be invalid (personal communication of Uphoff C.C.) \\
+ACH-000127 & SLR 20 & urinary\_tract & in ProjectSCORE & Contaminated.
+Shown to be a T24 derivative (ICLAC). Originally thought to originate
+from a clear cell renal cell carcinoma. \\
+ACH-000128 & LN-319 & central\_nervous\_system & in ProjectSCORE &
+Contaminated. Shown to be a LN-992 derivative (PubMed=22570425). \\
+ACH-000146 & THP-1 & blood & in ProjectSCORE & NRAS mutation indicated
+incorrectly as being p.Gly12Ser in PubMed=9379676 \\
+ACH-000164 & PANC-1 & pancreas & in ProjectSCORE & Additional TP53
+mutation in c.815T\textgreater C indicated incorrectly in
+PubMed=1630814 \\
+ACH-000167 & KE-97 & plasma\_cell & in ProjectSCORE & Misclassified.
+Originally thought to be a mucinous gastric adenocarcinoma cell line
+from a 52 year old male patient but is a B-lymphoblastoid cell line
+(DSMZ; PubMed=30285677). \\
+ACH-000178 & Hs 766T & pancreas & in ProjectSCORE & TP53 mutation
+indicated incorrectly as being at c.542G\textgreater A in
+PubMed=1630814 \\
+ACH-000190 & HD-MY-Z & unknown & new & Misclassified. Originally thought
+to be a Hodgkin lymphoma cell line, but seems to be an acute myeloid
+leukemia cell line (PubMed=29533902). \\
+ACH-000222 & AsPC-1 & pancreas & in ProjectSCORE & TP53 mutation
+indicated incorrectly as being at c.818G\textgreater A in
+PubMed=1630814 \\
+ACH-000234 & Caki-2 & kidney & in ProjectSCORE & Misclassified.
+Originally thought to be a clear cell renal cell carcinoma but shown to
+be from a papillary renal cell carcinoma (PubMed=17409424;
+PubMed=27993170). \\
+ACH-000272 & SLR 24 & kidney & in ProjectSCORE & Contaminated. Shown to
+be a RCC4 derivative (ICLAC). \\
+ACH-000304 & WM-115 & skin & in ProjectSCORE & The reported STR profile
+from Wistar of this cell line was changed at one point between February
+2016 when we retrieved them and entered them in the Cellosaurus and May
+2018. The major changes were: CSF1PO: 11,12-\textgreater12, D18S51:
+17-\textgreater17,21 and D8S1179: 8,13-\textgreater13,15 \\
+ACH-000356 & MKN-45 & gastric & in ProjectSCORE & Was indicated not to
+have a TP53 mutation in PubMed=1370612 and PubMed=15900046 \\
+ACH-000359 & MG-63 & bone & new & The reported STR profile from CLS of
+this cell line was changed in June 2019. Seven conflicts with other
+sources were resolved \\
+ACH-000361 & SK-HEP-1 & liver & in ProjectSCORE & Misclassified.
+Originally described as originating from an adenocarcinoma of liver and
+thus classified as hepatocellular carcinoma. Later studies show that it
+most probably has arisen from endothelial cells (PubMed=1371504;
+PubMed=31938418). \\
+ACH-000367 & NCI-H226 & lung & in ProjectSCORE & Indicated to have a
+TP53 p.Arg158Leu (c.473G\textgreater T) mutation according to
+PubMed=1311061, but no TP53 mutation detected according to
+PubMed=20557307, CCLE and Cosmic-CLP \\
+ACH-000375 & G-402 & kidney & in ProjectSCORE & This cell line is said
+to originate from a `renal leiomyoblastoma'. This is an
+antiquated/imprecise terminology that can not be assigned to a precise
+cancer type. As there is no information on the exact origin of this cell
+line, except that it was deposited by Peebles P.T at ATCC, we have
+assigned it to the generic `kidney neoplasm' of NCIt \\
+ACH-000406 & U-937 & blood & in ProjectSCORE & Partially contaminated.
+Some ATCC stocks were cross-contaminated by K-562 initially
+(PubMed=7759961). The problem was corrected and subsequent stocks have
+been confirmed to carry only U-937. \\
+ACH-000450 & MEL-HO & skin & in ProjectSCORE &
+Misidentified/contaminated. Shown to be identical to MEL-Wei. This cell
+line was reported to be isogenic with LCL-Ho (CVCL\_1868) but it does
+not have the same STR profile (PubMed=10508494; PubMed=20143388).
+According to DSMZ ACC-62 it is a human female cell line. \\
+ACH-000456 & B-CPAP & thyroid & new & Was originally classified a
+thyroid gland papillary carcinoma (PTC) but is now considered to be a
+poorly differentiated thyroid gland carcinoma (PDTC)
+(PubMed=23162534) \\
+ACH-000476 & JHH-4 & liver & in ProjectSCORE & FLC-4 (CVCL\_D204) is
+often stated to be synonymous with JHH-4, but a FLC-4 patent reference
+(Patent=US5804441) seems to indicate that it is derived from JHH-4 and
+has a different karyotype \\
+ACH-000490 & SF767 & cervix & in ProjectSCORE & Contaminated. Shown to
+be a ME-180 derivative (PubMed=22570425). \\
+ACH-000517 & SNU-410 & pancreas & in ProjectSCORE & KRAS mutation
+indicated incorrectly as being p.Gly12Val in PubMed=12037578 \\
+ACH-000535 & BxPC-3 & pancreas & in ProjectSCORE & Additional TP53
+mutation in c.793C\textgreater T indicated incorrectly in
+PubMed=1630814 \\
+ACH-000552 & HT-29 & colorectal & in ProjectSCORE & Indicated in
+PubMed=11921276 as originating from an adenocarcinoma of the
+rectosigmoid part of the intestine, but is only indicated in the oldest
+publication (DOI=10.1007/978-1-4757-1647-4\_5) as a colon
+adenocarcinoma \\
+ACH-000601 & MIA PaCa-2 & pancreas & in ProjectSCORE & Additional TP53
+mutation in c.818G\textgreater A indicated incorrectly in
+PubMed=1630814 \\
+ACH-000607 & KYM-1 & soft\_tissue & new & Possibly misclassified. It is
+not certain that this cell line originate from a alveolar
+rhabdomyosarcoma (ARMS). It lacks the PAXA3-FOXO1 gene fusion
+characteristics of ARMS. Many papers classify it as an embryonal
+rhabdomyosarcoma (ERMS) and we accordingly describe it as such. \\
+ACH-000620 & JHH-1 & liver & in ProjectSCORE & Partially contaminated.
+Some JCRB stocks were found to be from mouse (PubMed=20143388). Stock
+bought in 2013 was shown to be human by exome sequencing (personal
+communication of Rebouissou S.). \\
+ACH-000621 & MDA-MB-157 & breast & in ProjectSCORE & Removed from
+DepMap; \\
+ACH-000655 & SF268 & central\_nervous\_system & in ProjectSCORE &
+Possibly misidentified. Presence of a Y chromosome in cell line that was
+thought to be of female origin (STR profile). \\
+ACH-000661 & WM1799 & skin & in ProjectSCORE & The reported STR profile
+from Wistar of this cell line was changed at one point between February
+2016 when we retrieved them and entered them in the Cellosaurus and May
+2018. The major changes were: Amelogenin: X-\textgreater X,Y \\
+ACH-000673 & LN-443 & central\_nervous\_system & in ProjectSCORE &
+Contaminated. Shown to be a LN-444 derivative (PubMed=22570425).
+Originally thought to originate from a 66 year old male patient with a
+glioblastoma. \\
+ACH-000739 & Hep G2 & liver & in ProjectSCORE & Misclassified.
+Originally thought to be a hepatocellular carcinoma cell line but shown
+to be from an hepatoblastoma (PubMed=19751877). \\
+ACH-000747 & NCI-H1703 & lung & in ProjectSCORE & Indicated to have a
+TP53 p.Glu285Lys (c.853G\textgreater A) mutation according to
+PubMed=1311061 \\
+ACH-000765 & WM-983B & skin & in ProjectSCORE & The reported STR profile
+from Wistar of this cell line was changed at one point between February
+2016 when we retrieved them and entered them in the Cellosaurus and May
+2018. The major changes were: deletion of D18S51: 14 \\
+ACH-000770 & P31/FUJ & blood & in ProjectSCORE & NRAS mutation indicated
+to be at p.Gly12Asp (c.35G\textgreater A) in PubMed=9379676 \\
+ACH-000784 & KYSE-70 & esophagus & in ProjectSCORE & TP53 mutation
+indicated as c.750\_751insC in PubMed=8575860 \\
+ACH-000827 & WM-793 & skin & in ProjectSCORE & The reported STR profile
+from Wistar of this cell line was changed at one point between February
+2016 when we retrieved them and entered them in the Cellosaurus and May
+2018. The major changes were: D18S51: 11,14-\textgreater14,15 \\
+ACH-000829 & HuNS1 & plasma\_cell & in ProjectSCORE & Misclassified.
+Grand-parent cell line (GM01500) was originally thought to be a myeloma
+cell line but is a B-lymphoblastoid cell line. \\
+ACH-000833 & RH-30 & soft\_tissue & new & Removed from DepMap; Removed
+from DepMap; \\
+ACH-000837 & NCI-H322 & lung & in ProjectSCORE & We are not certain that
+NCI-H322 and NCI-H322M are identical \\
+ACH-000860 & NCI-H358 & lung & in ProjectSCORE & NCI-H358 and NCI-H358M
+(CVCL\_JA53) could be identical \\
+ACH-000884 & MDA-MB-435S & skin & in ProjectSCORE & Contaminated. Parent
+cell line (MDA-MB-435) has been shown to be a M14 derivative. \\
+ACH-000887 & SF-172 & central\_nervous\_system & in ProjectSCORE &
+Probably misidentified/contaminated. Except of a loss of an allele of
+TH01 the STR profile of SF172 is identical to that of SF763. Furthermore
+we could not find in the literature any trace of the exact origin of
+SF172 and, according to a personal communication of Shai A. from the
+UCSF Biorepository, there is no record of SF172 in their system while
+SF763 is registered there. The TP53 mutation recorded for SF763 is also
+identical to the one in SF172. \\
+ACH-000899 & WM-88 & skin & in ProjectSCORE & The reported STR profile
+from Wistar of this cell line was changed at one point between February
+2016 when we retrieved them and entered them in the Cellosaurus and May
+2018. The major changes were: Amelogenin: X,Y-\textgreater X \\
+ACH-000921 & NCI-H157-DM & lung & in ProjectSCORE & Contaminated.
+NCI-H157 and NCI-H1264 have been shown to be identical. \\
+ACH-000944 & NAMALWA & lymphocyte & new & Indicated to have an
+additional TP53 p.Arg248Trp (c.742C\textgreater T) mutation according to
+PubMed=2052620, but not confirmed by other references or by CCLE and
+Cosmic-CLP \\
+ACH-001001 & 143B & bone & in ProjectSCORE & Could be identical to HTK-
+(CVCL\_2522) \\
+ACH-001075 & NCI-H292 & lung & in ProjectSCORE & Removed from DepMap; \\
+ACH-001098 & KCI-MOH1 & pancreas & new & Contaminated. Shown to be a
+HPAC derivative (PubMed=20143388). Originally thought to originate from
+a 74 year old male patient with a moderately differentiated
+adenocarcinoma of the head of the pancreas. \\
+ACH-001107 & NA & pancreas & in ProjectSCORE & Contaminated. Shown to be
+a PANC-1 derivative. \\
+ACH-001145 & OC 316 & ovary & new & Possibly contaminated. May be
+identical to OC 314 (CVCL\_1616) according to STR profiling done at ICLC
+and to MSI data (PubMed=15677628). \\
+ACH-001151 & OVCAR-5 & ovary & in ProjectSCORE & Possibly misclassified.
+Originally thought to be a high grade ovarian serous adenocarcinoma but
+suspected to have a upper gastrointestinal origin (PubMed=27353327). \\
+ACH-001188 & SH-SY5Y & peripheral\_nervous\_system & new & Partially
+contaminated. Some laboratories that are redistributing this cell line
+are in fact redistributing a contaminated cell line of mouse origin
+(PubMed=25182563). \\
+ACH-001192 & SK-NEP-1 & bone & in ProjectSCORE & Misclassified.
+Originally thought to be a Wilm's tumor cell line but shown to be from
+an Ewing sarcoma (PubMed=17154184). \\
+ACH-001274 & SW982 & soft\_tissue & in ProjectSCORE & Stated to
+originate from a patient with a biphasic synovial sarcoma, however does
+not contain the SST-SSX1/SSX2 translocation which is typical of synovial
+sarcoma \\
+ACH-001318 & PLC/PRF/5 & liver & in ProjectSCORE & Often called PLC8024
+in Chinese literature probably because of a concatenation between
+PLC/PRF/5 and ATCC-8024 \\
+ACH-001374 & PA-1 {[}PA1{]} & ovary & in ProjectSCORE & TP53 mutation
+indicated to be at p.Asn239Asp (c.715A\textgreater G) in
+DOI=10.11418/jtca1981.16.3\_173 and PubMed=9359923 \\
+ACH-001394 & SUM-229PE & breast & in ProjectSCORE & Partially
+misidentified. For a period of time Asterand (now BioIVT) mistakenly
+distributed SUM149PT (CVCL\_3422) under the designation of SUM229PE.
+This leads to the publication of a STR profile (PubMed=25877200) which
+was almost identical to that of SUM149PT. \\
+ACH-001399 & SW 626 & colorectal & in ProjectSCORE & Misclassified.
+Although established from a surgical specimen from a cystadenocarcinoma
+of the ovary in a 46 year old female Caucasian, it now seems likely that
+it was established from an ovarian metastasis of a colonic carcinoma
+(PubMed=10433623). \\
+ACH-001416 & UM-UC9 & urinary\_tract & in ProjectSCORE & PubMed=27270441
+reports a STR profile (CSF1PO: 10; D13S317: 11; D16S539: 9,11; D5S818:
+13; D7S820: 8,10; TH01: 7; TPOX: 8; vWA: 17,19) which is completely
+different from that of DepMap and ECACC \\
+ACH-001525 & HT-3 & cervix & in ProjectSCORE & Indicated to be from a 58
+year old female patient in ATCC and from a 53 year old in Sloan
+Kettering tech transfer site \\
+ACH-001529 & JAR & uterus & in ProjectSCORE & Established from the
+trophoblastic tumor of the placenta of a 24 year old woman, but the cell
+line is from the male fetus \\
+ACH-001530 & JEG-3 & uterus & in ProjectSCORE & A TP53 mutation is
+indicated as being at p.Gln167His (c.501G\textgreater T) in
+PubMed=7819056 but has not been confirmed by CCLE and Cosmic-CLP \\
+ACH-001532 & JMU-RTK-2 & kidney & in ProjectSCORE & Possibly
+misidentified. Presence of a Y chromosome in cell line that was thought
+to be of female origin (STR profile). \\
+ACH-001538 & KKU-213 & bile\_duct & in ProjectSCORE & After JCRB found
+out that KKU-M156 and KKU-M214 were derived from KKU-M213, these three
+cell lines were renamed by the lab which established them: KKU-M213
+became KKU-213A, KKU-M214 became KKU-M213B and KKU-M156 became KKU-M213C
+(PubMed=32207095) \\
+ACH-001543 & KOSC-2 & upper\_aerodigestive & new & Removed from
+DepMap; \\
+ACH-001563 & MM127 & skin & in ProjectSCORE & Possibly misclassified. It
+is not certain that this cell line originate from a metastatic melanoma.
+Lacks the expression of three protein markers: S100, HMB-45 and Melan-A
+commonly found in melanoma cell lines (PubMed=27087056). Has a CTNNB1
+mutation not seen in other melanoma cell lines (PubMed=11930117). \\
+ACH-001566 & MM370 & skin & in ProjectSCORE & Misidentified. Presence of
+a Y chromosome in cell line that was thought to be of female origin. \\
+ACH-001654 & SK-GT-4 & esophagus & in ProjectSCORE & TP53 mutation
+indicated incorrectly as being at p.Arg175His (c.524G\textgreater A) in
+PubMed=7665247 \\
+ACH-001701 & UPCI-SCC-200 & upper\_aerodigestive & new & While the tumor
+has been shown to be HPV16 positive (PubMed=17112776), the cell line
+seems to be HPV16 negative (DSMZ) \\
+ACH-001709 & WSU-NHL & lymphocyte & new & Was originally classified as
+originating from a follicular lymphoma \\
+ACH-001737 & CTV-1-DM & blood & in ProjectSCORE & Probably
+misidentified. Originally thought to be a acute monoblastic leukemia but
+seems to be a T-ALL cell line (PubMed=15843827). Was also said to
+originate from a 40 year old female patient (PubMed=6593267) but has a
+male STR profile. \\
+ACH-001820 & COLO-824 & breast & in ProjectSCORE & Previously
+erroneously indicated as originating from a male patient, correct sex
+assignment from Moore G.E. in a personal communication to the authors of
+PubMed=9892114 \\
+ACH-001858 & SSP-25 & bile\_duct & new & Contaminated. Shown to be a
+ETK-1 derivative (RCB). Originally thought to originate from a 64 year
+old female patient with an intrahepatic cholangiocarcinoma. \\
+ACH-001959 & CC-LP-1 & bile\_duct & in ProjectSCORE & Indicated to
+derive from a female patient in PubMed=1355757, but has a X,Y amelogenin
+STR marker \\
+ACH-001982 & NZM3 & skin & new & The results of the Sequenom MassARRAY
+used in PubMed=32567790 contradicts the whole exome sequencing data for
+BRAF and indicates a p.Val600Lys (c.1798\_1799delGTinsAA) variant \\
+ACH-002043 & Ca9-22 & upper\_aerodigestive & in ProjectSCORE & Partially
+contaminated. Some stocks of Ca9-22 are contaminated with MSK-922
+(PubMed=21868764). \\
+ACH-002160 & MC-IXC & bone & in ProjectSCORE & Misclassified. Parent
+cell line (SK-N-MC) was originally thought to be a neuroblastoma cell
+line but shown to be from an Askin tumor. \\
+ACH-002161 & MKN28 & gastric & in ProjectSCORE & Contaminated. Shown to
+be a MKN74 derivative (PubMed=20143388). \\
+ACH-002183 & OVMIU & ovary & in ProjectSCORE & Contaminated. Shown to be
+a OVSAYO derivative (PubMed=20143388). Originally thought to originate
+from a 46 year old female patient with an ovarian adenocarcinoma. \\
+ACH-002210 & ARH-77 & blood & in ProjectSCORE & Misclassified.
+Originally thought to be a myeloma cell line but is a B-lymphoblastoid
+cell line (PubMed=7579375; PubMed=10516762). \\
+ACH-002247 & IM-9 & blood & in ProjectSCORE & Misclassified. Originally
+thought to be a myeloma cell line but is a B-lymphoblastoid cell line
+(PubMed=10516762). \\
+ACH-002257 & KINGS-1 & central\_nervous\_system & in ProjectSCORE &
+Indicated to be from a 67 year old male patient in CelloPub=CLPUB00151
+and from a 72 year old in JCRB IFO50435 \\
+ACH-002304 & SK-MG-1 & central\_nervous\_system & in ProjectSCORE &
+Contaminated. Shown to be a Marcus derivative (PubMed=20143388). \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{write.table}\NormalTok{(sample\_info\_DepMap, }
+            \AttributeTok{file =} \StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/sample\_info\_annProjectSCORE.csv\textquotesingle{}}\NormalTok{, }
+            \AttributeTok{quote =}\NormalTok{ F, }\AttributeTok{sep =} \StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{, }\AttributeTok{col.names =}\NormalTok{ T, }\AttributeTok{row.names =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+Gene expression, mutation and CNA data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gene\_expression }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/CCLE\_expression.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> ...1
+\end{verbatim}
+
+\begin{verbatim}
+## Rows: 1406 Columns: 19222
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr     (1): ...1
+## dbl (19221): TSPAN6 (7105), TNMD (64102), DPM1 (8813), SCYL3 (57147), C1orf1...
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gene\_cn }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/CCLE\_gene\_cn.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * `` -> ...1
+\end{verbatim}
+
+\begin{verbatim}
+## Rows: 1766 Columns: 25369
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr     (1): ...1
+## dbl (25368): DDX11L1 (84771), WASH7P (653635), MIR6859-1 (102466751), MIR130...
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mutations }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/datasets/DEPMAP\_PORTAL/version\_22Q2/CCLE\_mutations.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1235466 Columns: 32
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (22): Hugo_Symbol, Chromosome, Strand, Variant_Classification, Variant_T...
+## dbl  (7): Entrez_Gene_Id, NCBI_Build, Start_position, End_position, TCGAhsCn...
+## lgl  (3): isDeleterious, isTCGAhotspot, isCOSMIChotspot
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_info\_DepMap }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Gene\_Expression =} \FunctionTok{case\_when}\NormalTok{(DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ gene\_expression}\SpecialCharTok{$}\NormalTok{...}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}yes\textquotesingle{}}\NormalTok{,}
+                           \SpecialCharTok{!}\NormalTok{DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ gene\_expression}\SpecialCharTok{$}\NormalTok{...}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}no\textquotesingle{}}\NormalTok{), }
+         \AttributeTok{CNV =} \FunctionTok{case\_when}\NormalTok{(DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ gene\_cn}\SpecialCharTok{$}\NormalTok{...}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}yes\textquotesingle{}}\NormalTok{,}
+                           \SpecialCharTok{!}\NormalTok{DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ gene\_cn}\SpecialCharTok{$}\NormalTok{...}\DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}no\textquotesingle{}}\NormalTok{), }
+         \AttributeTok{Somatic\_Mutations =} \FunctionTok{case\_when}\NormalTok{(DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ mutations}\SpecialCharTok{$}\NormalTok{DepMap\_ID }\SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}yes\textquotesingle{}}\NormalTok{,}
+                           \SpecialCharTok{!}\NormalTok{DepMap\_ID }\SpecialCharTok{\%in\%}\NormalTok{ mutations}\SpecialCharTok{$}\NormalTok{DepMap\_ID }\SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}no\textquotesingle{}}\NormalTok{)) }
+
+\NormalTok{tmp }\OtherTok{\textless{}{-}}\NormalTok{ sample\_info\_DepMap }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Gene\_Expression, CNV, Somatic\_Mutations, DepMap22Q2) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Freq =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Gene_Expression', 'CNV', 'Somatic_Mutations'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 5
+## # Groups:   Gene_Expression, CNV, Somatic_Mutations [6]
+##   Gene_Expression CNV   Somatic_Mutations DepMap22Q2       Freq
+##   <chr>           <chr> <chr>             <chr>           <int>
+## 1 no              no    no                new                 3
+## 2 no              no    yes               new                 1
+## 3 no              yes   yes               in ProjectSCORE    73
+## 4 no              yes   yes               new                 4
+## 5 yes             no    yes               new                 5
+## 6 yes             yes   no                new                 1
+## 7 yes             yes   yes               in ProjectSCORE   788
+## 8 yes             yes   yes               new               211
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(tmp),}
+             \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Freq, }\AttributeTok{axis1 =}\NormalTok{ DepMap22Q2, }
+                 \AttributeTok{axis2 =}\NormalTok{ Gene\_Expression, }\AttributeTok{axis3 =}\NormalTok{ CNV, }
+                 \AttributeTok{axis4 =}\NormalTok{ Somatic\_Mutations)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_alluvium}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ DepMap22Q2), }\AttributeTok{width =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_stratum}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{12}\NormalTok{, }\AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\AttributeTok{color =} \StringTok{"grey"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\AttributeTok{stat =} \StringTok{"stratum"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{after\_stat}\NormalTok{(stratum))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\StringTok{"DepMap22Q2"}\NormalTok{, }\StringTok{"Gene Expression"}\NormalTok{, }\StringTok{"CNV"}\NormalTok{, }\StringTok{"Mutations"}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(.}\DecValTok{06}\NormalTok{, .}\DecValTok{06}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{text=} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{), }\AttributeTok{legend.position =} \StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in to_lodes_form(data = data, axes = axis_ind, discern =
+## params$discern): Some strata appear at multiple axes.
+
+## Warning in to_lodes_form(data = data, axes = axis_ind, discern =
+## params$discern): Some strata appear at multiple axes.
+
+## Warning in to_lodes_form(data = data, axes = axis_ind, discern =
+## params$discern): Some strata appear at multiple axes.
+\end{verbatim}
+
+\includegraphics{compare_latest_update_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(tmp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llllr@{}}
+\toprule
+Gene\_Expression & CNV & Somatic\_Mutations & DepMap22Q2 & Freq \\
+\midrule
+\endhead
+no & no & no & new & 3 \\
+no & no & yes & new & 1 \\
+no & yes & yes & in ProjectSCORE & 73 \\
+no & yes & yes & new & 4 \\
+yes & no & yes & new & 5 \\
+yes & yes & no & new & 1 \\
+yes & yes & yes & in ProjectSCORE & 788 \\
+yes & yes & yes & new & 211 \\
+\bottomrule
+\end{longtable}
+
+\end{document}

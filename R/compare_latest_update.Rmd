@@ -1,0 +1,155 @@
+---
+title: "ProjectScoreSanger20210311 VS DepMap22Q2"
+author: "Lucia Trastulla"
+date: "23/05/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Aim
+
+Comparison of **DepMap 22Q2** release <https://depmap.org/portal/download/> and Project SCORE release **Project_score_combined_Sanger_v1_Broad_20Q2_20210311** <https://score.depmap.sanger.ac.uk/downloads> 
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggvenn)
+library(ggalluvial)
+
+GeneEffect_DepMap <- read_csv('~/datasets/DEPMAP_PORTAL/version_22Q2/CRISPR_gene_effect.csv')
+sample_info_DepMap <- read_csv('~/datasets/DEPMAP_PORTAL/version_22Q2/sample_info.csv')
+sample_info_DepMap <- sample_info_DepMap[match(GeneEffect_DepMap$DepMap_ID, sample_info_DepMap$DepMap_ID), ]
+
+sample_info_CMP <- read_csv('/group/iorio/CellModelPassports/models/model_list_20210611.csv')
+GeneEffect_SCORE <- get(load('/group/iorio/Datasets/DepMap/essentiality20Q2/Sanger_Broad_higQ_scaled_depFC.RData'))
+sample_info_PS <- sample_info_CMP[match(colnames(GeneEffect_SCORE), sample_info_CMP$model_name), ]
+```
+
+```{r, fig.width=4, fig.height=4, fig.align = "center"}
+
+CCL_ids <- list(ProjectSCORE = sample_info_PS$BROAD_ID, 
+               DepMap22Q2 = sample_info_DepMap$DepMap_ID)
+
+ggvenn(CCL_ids, fill_color = c("#0073C2FF", "#EFC000FF"),
+  stroke_size = 1, set_name_size = 5)
+
+
+```
+```{r}
+
+# combined considering sample_info_CMP info 
+
+sample_info_CMP <- sample_info_CMP %>% 
+  mutate(in_DepMap22Q2 = case_when(BROAD_ID %in% sample_info_DepMap$DepMap_ID ~ T,
+                           !BROAD_ID %in% sample_info_DepMap$DepMap_ID ~ F), 
+         in_ProjectSCORE = case_when(model_name %in% colnames(GeneEffect_SCORE) ~ T,
+                           !model_name %in% colnames(GeneEffect_SCORE) ~ F))
+table(sample_info_CMP$in_DepMap22Q2, sample_info_CMP$in_ProjectSCORE)
+
+sample_info_DepMap <- sample_info_DepMap %>% 
+  mutate(DepMap22Q2 = case_when(DepMap_ID %in% sample_info_PS$BROAD_ID ~ 'in ProjectSCORE',
+                           !DepMap_ID %in% sample_info_PS$BROAD_ID ~ 'new'))
+
+```
+When matching with CellModelPassport reference file, only 994 (861 + 133) 
+found in the reference file and not 1086: 92 not annotated in the cell model passport
+
+```{r}
+
+lineages <- unique(sample_info_DepMap$lineage)
+df <- sample_info_DepMap %>% 
+        group_by(DepMap22Q2, lineage) %>% 
+        summarise(count = n()) %>%
+        mutate(DepMap22Q2 = factor(DepMap22Q2, levels = c('in ProjectSCORE', 'new')))
+tmp <- df %>% filter(DepMap22Q2 == 'new') %>% arrange(count)
+ord_lineages <- as.character(tmp$lineage)
+ord_lineages <- c(setdiff(lineages, ord_lineages), ord_lineages)
+df$lineage <- factor(df$lineage, levels = ord_lineages)
+
+# order by increase in size
+ggplot(df, aes(x = lineage, y = count, fill = DepMap22Q2)) +
+  geom_bar(stat = 'identity') + 
+  theme_bw() + 
+  xlab("") +                                        
+  coord_flip() 
+
+```
+
+```{r, fig.width=12,fig.height=10}
+
+ord_lineages <- ord_lineages[ord_lineages!= 'unknown']
+tmp <- sample_info_DepMap %>% filter(lineage != 'unknown') %>%
+  group_by(lineage, lineage_subtype, DepMap22Q2) %>% summarise(Freq = n())  %>%
+  mutate(lineage = factor(lineage , levels = ord_lineages))
+
+lineages_subtypes <- c()
+for(i in 1:length(ord_lineages)){
+  tmp_i <- sample_info_DepMap %>% filter(lineage == ord_lineages[i])
+  lineages_subtypes <- c(lineages_subtypes, unique(tmp_i$lineage_subtype))
+}
+lineages_subtypes <- unique(lineages_subtypes[!is.na(lineages_subtypes)])
+tmp <- tmp %>%  
+  mutate(lineage_subtype = factor(lineage_subtype, levels = lineages_subtypes))
+
+ggplot(as.data.frame(tmp),
+             aes(y = Freq, axis1 = DepMap22Q2, axis2 = lineage, axis3 = lineage_subtype)) +
+  geom_alluvium(aes(fill = DepMap22Q2), width = 1/12, aes.bind = "flows") +
+  geom_stratum(width = 1/12, fill = "white", color = "grey") +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("DepMap22Q2", "Lineage","Lineage Subtype"), expand = c(.06, .06)) + 
+  theme(text= element_text(size = 18), legend.position = 'bottom')
+
+```
+
+
+```{r}
+knitr::kable(sample_info_DepMap[!is.na(sample_info_DepMap$Cellosaurus_issues), 
+                                c('DepMap_ID', 'cell_line_name', 'lineage', 
+                                  'DepMap22Q2', 'Cellosaurus_issues')])
+write.table(sample_info_DepMap, 
+            file = '~/datasets/DEPMAP_PORTAL/version_22Q2/sample_info_annProjectSCORE.csv', 
+            quote = F, sep = ',', col.names = T, row.names = F)
+
+```
+
+Gene expression, mutation and CNA data
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+
+gene_expression <- read_csv('~/datasets/DEPMAP_PORTAL/version_22Q2/CCLE_expression.csv')
+gene_cn <- read_csv('~/datasets/DEPMAP_PORTAL/version_22Q2/CCLE_gene_cn.csv')
+mutations <- read_csv('~/datasets/DEPMAP_PORTAL/version_22Q2/CCLE_mutations.csv')
+
+```
+
+```{r}
+
+sample_info_DepMap <- sample_info_DepMap %>% 
+  mutate(Gene_Expression = case_when(DepMap_ID %in% gene_expression$...1 ~ 'yes',
+                           !DepMap_ID %in% gene_expression$...1 ~ 'no'), 
+         CNV = case_when(DepMap_ID %in% gene_cn$...1 ~ 'yes',
+                           !DepMap_ID %in% gene_cn$...1 ~ 'no'), 
+         Somatic_Mutations = case_when(DepMap_ID %in% mutations$DepMap_ID ~ 'yes',
+                           !DepMap_ID %in% mutations$DepMap_ID ~ 'no')) 
+
+tmp <- sample_info_DepMap %>% 
+  group_by(Gene_Expression, CNV, Somatic_Mutations, DepMap22Q2) %>% 
+  summarise(Freq = n())
+
+ggplot(as.data.frame(tmp),
+             aes(y = Freq, axis1 = DepMap22Q2, 
+                 axis2 = Gene_Expression, axis3 = CNV, 
+                 axis4 = Somatic_Mutations)) +
+  geom_alluvium(aes(fill = DepMap22Q2), width = 1/12) +
+  geom_stratum(width = 1/12, fill = "white", color = "grey") +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("DepMap22Q2", "Gene Expression", "CNV", "Mutations"), expand = c(.06, .06)) + 
+  theme(text= element_text(size = 10), legend.position = 'bottom')
+
+knitr::kable(tmp)
+```
